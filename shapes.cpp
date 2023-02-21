@@ -1,5 +1,4 @@
 #include <iostream>
-
 /*
 *****
 *****
@@ -8,16 +7,18 @@
 
 std::string box(int width, int height)
 {
+    std::string strWidth = std::to_string(width);  
+    std::string strHeight = std::to_string(height);
+    std::string header = "Width: " + strWidth;
+    header+= " \nHeight: " + strHeight; 
+    header+= "\nShape: \n";
     std::string box;
-    box+="\nWidth: " + width;
-    box+="\nHeight: " + height;
-    box+= "\nShape: \n";
     for(int i = 0; i < height; i++){
         for (int j = 0; j < width; j++)
             box+="*";
         box+="\n";
     }
-    return box;
+    return header + box;
 }
 
 /*
@@ -29,15 +30,17 @@ std::string box(int width, int height)
  * * * * * 
 */
 
-/*
+
 std::string checkerboard(int width, int height)
 {
     int ind = 0;
     std::string checkerboard;
-    checkerboard+="\nWidth: " + width;
-    checkerboard+="\nHeight: " + height;
+    std::string strWidth = std::to_string(width);  
+    std::string strHeight = std::to_string(height);
+    checkerboard+="\nWidth: " + strWidth;
+    checkerboard+="\nHeight: " + strHeight;
     checkerboard+= "\nShape: \n";
-    for(int i = 0; i < height; i++)
+    for(int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             if(ind%2 == 0){
                 checkerboard+="*";
@@ -49,6 +52,8 @@ std::string checkerboard(int width, int height)
             }
         }
         checkerboard+="\n";
+    }
+        
     return checkerboard;
 }
 
@@ -72,7 +77,7 @@ std::string checkerboard2(int width, int height)
     std::cout << "\nShape: \n" << checkerboard << "\n";
     return "";
 }
-*/
+
 /*Write a program cross.cpp that asks the user to input the shape size, 
 and prints a diagonal cross of that dimension.
 
@@ -89,29 +94,27 @@ Shape:
  *    *
 *      *
 */
-/*
+
 std::string cross(int size)
 {
     std::string cross;
-    cross+="\nSize: " + size;
+    std::string strSize = std::to_string(size);
+    cross+="\nSize: " + strSize;
     cross+= "\nShape: \n";
     for(int i = 0; i < size; i++){
-        for(int j = 0; j < size; j++)
+        for(int j = 0; j < size; j++){
             if(j==i || j==size-1-i)
                 cross+="*";
             else  
                 cross+=" ";
+        }
+        cross+="\n";
     }
     return cross;
 }
 
-*/
-/*Write a program lower.cpp that prints the bottom-left half of a square, given the side length.
 
-Example:
-Input side length: 6
-
-Shape:
+/*
 *
 **
 ***
@@ -119,34 +122,47 @@ Shape:
 *****
 ******
 */
-/*
+
 std::string lower(int length)
 {
     std::string low;
-    low+="Length: " + length;
+    std::string strLength = std::to_string(length);
+    low+="Length: " + strLength;
     low+= "\nShape: \n";
-    int tempWidth = 1;
+    int tempLen = 1;
     for(int i = 0; i < length; i++){
-        for (int j = 0; j < tempWidth; j++)
-            low = low + "*";
-        tempWidth++;
+        for (int j = 0; j < tempLen; j++)
+            low+="*";
+        low+="\n";
+        tempLen++;
     }
     return low;
 }
-*/
 
-/*Write a program upper.cpp that prints the top-right half of a square, given the side length.
 
-Example:
-Input side length: 5
-
-Shape:
+/*
 *****
  ****
   ***
    **
     *
 */
+
+std::string upper(int length)
+{
+    std::string up;
+    std::string strLength = std::to_string(length);
+    up+="Length: " + strLength;
+    up+= "\nShape: \n";
+    int tempLen = length;
+    for(int i = 0; i < length; i++){
+        for (int j = 0; j < tempLen; j++)
+            up+="*";
+        up+="\n";
+        tempLen--;
+    }
+    return up;
+}
 
 /*Write a program trapezoid.cpp that prints an upside-down trapezoid of given width and height.
 
@@ -171,6 +187,31 @@ Impossible shape!
 spaces = 0;
 stars = width*/
 
+std::string trapezoid(int width, int height)
+{
+    std::string trap;
+    std::string strWidth = std::to_string(width);  
+    std::string strHeight = std::to_string(height);
+    trap+="\nWidth: " + strWidth;
+    trap+="\nHeight: " + strHeight;
+    trap+= "\nShape: \n";
+    for(int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            if(height*2 > width){
+                return "Impossible Shape!";
+            }
+            else if(j<i || j>width-i-1){
+                trap+=" ";
+            }
+            else
+                trap+="*";
+        }
+        trap+="\n";
+    }
+    return trap;
+}
+
+
 /*Write a program checkerboard3x3.cpp that asks the user to input width and height and prints a checkerboard of 3-by-3 squares. (It should work even if the input dimensions are not a multiple of three.)
 
 Example 1:
@@ -189,3 +230,72 @@ Shape:
 ***   ***   ***
    ***   ***   *
    ***   ***   **/
+
+std::string checkerboard3x3(int width, int height)
+{
+    std::string check;
+    std::string strWidth = std::to_string(width);  
+    std::string strHeight = std::to_string(height);
+    check+="\nWidth: " + strWidth;
+    check+="\nHeight: " + strHeight;
+    check+= "\nShape: \n";
+    std::string line1;
+    std::string line2;
+    std::string temp;
+    for(int i = 0; i < width; i++){
+        if(i<3){
+            line1+="*";
+            temp = "*";
+        }
+        else if(i%3==0 && temp == "*"){
+            line1+=" ";
+            temp = " ";
+        }
+        else if(i%3==0 && temp == " "){
+            line1+="*";
+            temp = "*";
+        }
+        else if(temp=="*")
+            line1+="*";
+        else  
+            line1+= " ";
+    }
+    std::cout << line1 << "line 1\n";
+    for(int i = 0; i < width; i++){
+        if(i<3){
+            line2+=" ";
+            temp = " ";
+        }
+        else if(i%3==0 && temp == "*"){
+            line2+=" ";
+            temp = " ";
+        }
+        else if(i%3==0 && temp == " "){
+            line2+="*";
+            temp = "*";
+        }
+        else if(temp=="*")
+            line2+="*";
+        else  
+            line2+= " ";
+    }
+    temp = line1;
+    for(int i = 0; i < height; i++){
+        if(i<3){
+            check+=line1+"\n";
+        }
+        else if(i%3==0 && temp == line1){
+            check+=line2+"\n";
+            temp = line2;
+        }
+        else if(i%3==0 && temp == line2){
+            check+=line1+"\n";
+            temp = line1;
+        }
+        else if(temp==line1)
+            check+=line1+"\n";
+        else  
+            check+=line2+"\n";
+    }
+    return check;
+}
