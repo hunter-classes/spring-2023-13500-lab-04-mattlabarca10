@@ -1,5 +1,5 @@
 main: main.o shapes.o
-	g++ -o main main.o reservoir.o
+	g++ -o main main.o shapes.o
 
 main.o: main.cpp shapes.h
 	g++ -c main.cpp
