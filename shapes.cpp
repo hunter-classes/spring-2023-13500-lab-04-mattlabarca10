@@ -30,7 +30,6 @@ std::string box(int width, int height)
  * * * * * 
 */
 
-
 std::string checkerboard(int width, int height)
 {
     int ind = 0;
@@ -41,23 +40,37 @@ std::string checkerboard(int width, int height)
     checkerboard+="\nHeight: " + strHeight;
     checkerboard+= "\nShape: \n";
     for(int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
-            if(ind%2 == 0){
-                checkerboard+="*";
-                ind++;
+        ind = 0;
+        if(i%2==0){
+            for(int j = 0; j < width; j++){
+                if(ind%2 == 0){
+                    checkerboard+="*";
+                    ind++;
+                }
+                else{
+                    checkerboard+=" ";
+                    ind++;
+                }
             }
-            else{
-                checkerboard+=" ";
-                ind++;
+        }
+        else{
+            for(int j = 0; j < width; j++){
+                if(ind%2 == 0){
+                    checkerboard+=" ";
+                    ind++;
+                }
+                else{
+                    checkerboard+="*";
+                    ind++;
+                }
             }
         }
         checkerboard+="\n";
-    }
-        
+    }  
     return checkerboard;
 }
 
-std::string checkerboard2(int width, int height)
+std::string checkerboard_v2(int width, int height)
 {
     std::cout << "Width: " << width << "\n";
     std::cout << "Height: " << height << "\n";
@@ -113,7 +126,6 @@ std::string cross(int size)
     return cross;
 }
 
-
 /*
 *
 **
@@ -138,7 +150,6 @@ std::string lower(int length)
     }
     return low;
 }
-
 
 /*
 *****
@@ -211,7 +222,6 @@ std::string trapezoid(int width, int height)
     return trap;
 }
 
-
 /*Write a program checkerboard3x3.cpp that asks the user to input width and height and prints a checkerboard of 3-by-3 squares. (It should work even if the input dimensions are not a multiple of three.)
 
 Example 1:
@@ -232,6 +242,33 @@ Shape:
    ***   ***   **/
 
 std::string checkerboard3x3(int width, int height)
+{
+    std::cout << "Width: " << width << "\n";
+    std::cout << "Height: " << height << "\n";
+    std::string check;
+    for(int i = 0; i < height; i++){
+        if(i%6 < 3){
+            for(int j = 0; j < width; j++){
+                if(j%6 < 3)
+                    check+="*";
+                else
+                    check+=" ";
+            }
+        }
+        else
+            for(int j = 0; j < width; j++){
+                if(j%6 < 3)
+                    check+=" ";
+                else
+                    check+="*";
+            }
+        check+="\n";
+    }
+    
+    return check;
+}
+
+std::string checkerboard3x3_v2(int width, int height)
 {
     std::string check;
     std::string strWidth = std::to_string(width);  

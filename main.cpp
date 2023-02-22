@@ -14,8 +14,8 @@ int main()
     std::cout << result;
     std::cout << "\n------------------\n";
     
-    result = checkerboard(3,5);
-    std::cout << "checkerboard(3,5):\n";
+    result = checkerboard(8,6);
+    std::cout << "checkerboard(8,6):\n";
     std::cout << result;
     std::cout << "\n------------------\n";
 
